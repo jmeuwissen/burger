@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                             function (res) {
 
                                 console.log("changed devoured to ", toBeDevoured);
-                                // location.reload();
+                                location.reload();
                             }
                         )
                 });
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 }).then()
                 .then(function () {
                     console.log("created new burger");
-                    // location.reload();
+                    location.reload();
                 })
         })
 })

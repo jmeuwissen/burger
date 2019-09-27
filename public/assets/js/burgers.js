@@ -1,43 +1,40 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 
     console.log("stuff loaded");
-    if (document.getElementsByClassName(".change-eaten")) {
-        const els = document.getElementsByClassName(".change-eaten");
-
-        [].forEach.call(els, function (element) {
-            console.log("do thing")
-            
-        
+    if (document.querySelectorAll(".change-eaten")) {
 
 
-            element.addEventListener("click", function (event) {
-                event.preventDefault();
-                const id = this.getAttribute("data-id");
-                const toBeDevoured = this.getAttribute("data-toBeDevoured");
+            document.querySelectorAll(".change-eaten").forEach(element => {
 
-                const newDevouredState = {
-                    devoured: toBeDevoured
-                }
-                console.log(newDevouredState);
 
-                fetch("/api/burgers/" + id, {
-                        method: "PUT",
-                        body: JSON.stringify(newDevouredState),
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }).then()
-                    .then(
-                        function (res) {
+                element.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const id = this.getAttribute("data-id");
+                    const toBeDevoured = this.getAttribute("data-toBeDevoured");
 
-                            console.log("changed devoured to ", toBeDevoured);
-                            // location.reload();
-                        }
-                    )
+                    const newDevouredState = {
+                        devoured: toBeDevoured
+                    }
+                    console.log(newDevouredState);
+
+                    fetch("/api/burgers/" + id, {
+                            method: "PUT",
+                            body: JSON.stringify(newDevouredState),
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        }).then()
+                        .then(
+                            function (res) {
+
+                                console.log("changed devoured to ", toBeDevoured);
+                                // location.reload();
+                            }
+                        )
+                });
             });
-        });
-    }
-
+        }
+    
     document.getElementById("submit")
         .addEventListener("click", function (event) {
             event.preventDefault();
